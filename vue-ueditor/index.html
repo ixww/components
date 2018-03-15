@@ -1,0 +1,55 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="./UEditor/themes/default/css/ueditor.css" type="text/css">
+    <script src="./UEditor/ueditor.config.js"></script>
+    <script src="./UEditor/ueditor.all.js"></script>
+    <script src="./UEditor/lang/zh-cn/zh-cn.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.5.15/vue.min.js"></script>
+    <script src="./ueditor.js"></script>
+</head>
+<body>
+    
+
+    <div id="app">
+
+        <p>UEditor Demo</p>
+        <ueditor :content="myContent" :config="myConfig"></ueditor>
+
+    </div>
+
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                myContent:'this is my first content',
+                myConfig:{
+                    initialFrameWidth:'100%',
+                    initialFrameHeight:'400',
+                    autoHeightEnabled:false,
+                    elementPathEnabled:false,
+                    imageScaleEnabled:false,
+                    maxListLevel:-1,
+                    wordCount:false,
+                    imagePopup:false,
+                    autoSyncData:false,
+                    retainOnlyLabelPasted:true,
+                    pasteplain:true,
+                    indentValue:0,
+                    enableAutoSave:false,
+                    allowDivTransToP:false,
+                    toolbars: [['undo', 'redo','|','bold', 'italic', 'underline','fontfamily', 'fontsize','fontborder', 'strikethrough', '|','insertimage' , '|','forecolor', 'backcolor','|','link','unlink','|','insertorderedlist', 'insertunorderedlist','|','justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|','source'
+                    ]],
+                    imagePopup:true,
+                    serverUrl :"serverUlr/index.php"
+                }
+            }
+        })
+    </script>
+
+
+    
+
+</body>
+</html>
