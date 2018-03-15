@@ -2,12 +2,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./UEditor/themes/default/css/ueditor.css" type="text/css">
     <script src="./UEditor/ueditor.config.js"></script>
     <script src="./UEditor/ueditor.all.js"></script>
     <script src="./UEditor/lang/zh-cn/zh-cn.js"></script>
     <script src="https://cdn.bootcss.com/vue/2.5.15/vue.min.js"></script>
     <script src="./ueditor.js"></script>
+    <style>
+        body{
+            padding:20px;
+        }
+    </style>
 </head>
 <body>
     
@@ -15,6 +21,7 @@
     <div id="app">
 
         <p>UEditor Demo</p>
+        <p>后端没有配置，所以图片上传不可用</p>
         <ueditor :content="myContent" :config="myConfig"></ueditor>
 
     </div>
