@@ -1,3 +1,9 @@
+
+// 组件对外暴露了两个方法：
+// getUEContent 获取编辑器内容
+// setUEContent 设置编辑器内容
+
+
 Vue.component('ueditor',{
     name:'ueditor',
     template:'<script type="text/plain" :id="elid"></script>',
@@ -41,6 +47,10 @@ Vue.component('ueditor',{
     methods: {
         getUEContent() { // 获取内容方法
             return this.editor.getContent()
+        },
+        setUEContent(text){
+            this.editor.focus();
+            this.editor.execCommand('inserthtml',text); 
         }
     },
     destroyed() {

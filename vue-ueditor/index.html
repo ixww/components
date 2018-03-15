@@ -19,7 +19,10 @@
 
         <p>UEditor Demo</p>
         <p>后端没有配置，所以图片上传不可用</p>
-        <ueditor :content="myContent" :config="myConfig"></ueditor>
+        <button @click="inseret">点击在光标处增加内容</button>
+        <hr>
+        <ueditor :content="myContent" :config="myConfig" @change="changeContent" ref="UEditor"></ueditor>
+
 
     </div>
 
@@ -27,8 +30,9 @@
         new Vue({
             el:'#app',
             data:{
-                myContent:'this is my first content',
-                myConfig:{
+                inseretText :'插入的文本',
+                myContent:'<p>this is default content</p><br />',
+                myConfig:{// 配置项可根据业务需求修改
                     initialFrameWidth:'100%',
                     initialFrameHeight:'400',
                     autoHeightEnabled:false,
@@ -47,6 +51,15 @@
                     ]],
                     imagePopup:true,
                     serverUrl :"serverUlr/index.php"
+                }
+            },
+            methods:{
+                inseret:function(){
+                    var _UEeditor = this.$refs.UEditor;
+                    _UEeditor.setUEContent(this.inseretText);
+                },
+                changeContent:function(data){
+                    console.log(data)
                 }
             }
         })
