@@ -1,0 +1,56 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>vue-dragloading</title>
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/vue/2.5.15/vue.min.js"></script>
+    <script src="./loading.js"></script>
+    <style>
+        body{padding:20px;}
+        .dragloading{overflow-y: auto;background-color: #eee;}
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <dragloading :loadfunc="getData" :loadstatus="loading" :loadhasmore="hasMore" :height="'200px'">
+            <div id="content"></div>
+        </dragloading>
+    </div>
+
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                page:1,
+                loading:false,
+                hasMore:true,
+            },
+            methods:{
+                getData(){
+                    let that = this;
+                    if(!that.hasMore) return false;
+                    this.loading = true;
+                    setTimeout(function(){
+                        that.loading = false;
+                        let i = 0;
+                        while(i<11){
+                            let content = document.createElement('p');
+                            content.innerHTML = 'THIS IS CONTENT'+i;
+                            document.querySelector('#content').appendChild(content)
+                            i++;
+                        }
+                        console.log(`这是第${that.page}页`);
+                        that.page ++ ;
+                        if(that.page > 3){
+                            that.hasMore = false;
+                        }
+                    },1000)
+                }
+            }
+        })
+    </script>
+
+
+</body>
+</html>
