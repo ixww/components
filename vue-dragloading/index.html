@@ -14,7 +14,9 @@
 
     <div id="app">
         <dragloading :loadfunc="getData" :loadstatus="loading" :loadhasmore="hasMore" :height="'200px'">
-            <div id="content"></div>
+            <div id="content">
+                
+            </div>
         </dragloading>
     </div>
 
@@ -27,20 +29,23 @@
                 hasMore:true,
             },
             methods:{
-                getData(){
+                getData(callback){
                     let that = this;
                     if(!that.hasMore) return false;
                     this.loading = true;
                     setTimeout(function(){
                         that.loading = false;
                         let i = 0;
-                        while(i<11){
+                        while(i<12){
                             let content = document.createElement('p');
                             content.innerHTML = 'THIS IS CONTENT'+i;
                             document.querySelector('#content').appendChild(content)
                             i++;
                         }
                         console.log(`这是第${that.page}页`);
+                        if(typeof callback === 'function'){
+                            callback();
+                        }
                         that.page ++ ;
                         if(that.page > 3){
                             that.hasMore = false;

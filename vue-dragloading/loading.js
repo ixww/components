@@ -23,8 +23,13 @@ Vue.component('dragloading',{
         initContent(){
             let outerHeight = this.$refs[this.elid].offsetHeight;
             let innerHeight = this.$refs[this.elid+'child'].offsetHeight;
+            let that = this;
             if(outerHeight > innerHeight && this.loadhasmore ){
-                this.loadfunc();
+                this.loadfunc(function(){
+                    if(that.$refs[that.elid+'child'].offsetHeight < outerHeight && that.loadhasmore){
+                        that.initContent();
+                    }
+                });
             }
         },
         checkBottom(){
@@ -33,10 +38,11 @@ Vue.component('dragloading',{
             this.timer = setTimeout(function(){
                 let wrap = that.$refs[that.elid], cont = that.$refs[that.elid+'child'];
                 if(wrap.scrollTop + wrap.offsetHeight >= cont.offsetHeight - 20){
-                    that.loadfunc();
+                    that.loadfunc(function(){
+                    console.log('loading 获取到 主页面接口获取完毕')
+                });
                 }
             },100)
-            
         }
     }
 })
